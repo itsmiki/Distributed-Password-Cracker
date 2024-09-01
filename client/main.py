@@ -8,7 +8,9 @@ from sys import platform
 
 
 def run_client():
-    _workstation_name = input("Set name for this workstation:")
+    _workstation_name = input("Set name for this workstation: ")
+    _server_ip = input("Provide server IP: ")
+    _server_port = input("Provide server port: ")
 
     if platform == "linux" or platform == "linux2":
         print("Detected system: Linux")
@@ -20,8 +22,8 @@ def run_client():
         
         general_config = GeneralConfig("config.ini")
         general_config.set_run_command_prefix("./")
-        general_config.set_task_server_ip("192.168.100.98")
-        general_config.set_task_server_port("7000")
+        general_config.set_task_server_ip(_server_ip)
+        general_config.set_task_server_port(_server_port)
         general_config.set_client_name(_workstation_name)
         general_config.set_temp_dir("temp/")
         general_config.set_masks_dir("hashcat/rules/")
@@ -38,8 +40,8 @@ def run_client():
         
         general_config = GeneralConfig("config.ini")
         general_config.set_run_command_prefix(".\\")
-        general_config.set_task_server_ip("192.168.100.98")
-        general_config.set_task_server_port("7000")
+        general_config.set_task_server_ip(_server_ip)
+        general_config.set_task_server_port(_server_port)
         general_config.set_client_name(_workstation_name)
         general_config.set_temp_dir("temp\\")
         general_config.set_masks_dir("hashcat\\rules\\")

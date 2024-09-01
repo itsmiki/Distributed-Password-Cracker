@@ -29,8 +29,8 @@ class ClientInstance():
             return _data, False
         
         if _data['attack_type'] == "mask":
-            _file_masks_output = open(f'{self.general_config['tempDir']}{_data['subtask_id']}_mask.txt', 'a')
-            _file_masks_input = open(f'{self.general_config['masksDir']}{_data["config"]['mask']}', 'r')
+            _file_masks_output = open(f"{self.general_config['tempDir']}{_data['subtask_id']}_mask.txt", 'a')
+            _file_masks_input = open(f"{self.general_config['masksDir']}{_data['config']['mask']}", 'r')
             
             _all_masks = _file_masks_input.readlines()
 
@@ -39,22 +39,22 @@ class ClientInstance():
             
             _file_masks_output.close()
             _file_masks_input.close()
-            _data['mask_file'] = f'{_data['subtask_id']}_mask.txt'
+            _data['mask_file'] = f"{_data['subtask_id']}_mask.txt"
         
-        _file = open(f'{self.general_config['tempDir']}{_data['task_id']}_output.txt', 'w')
+        _file = open(f"{self.general_config['tempDir']}{_data['task_id']}_output.txt", 'w')
         _file.close()
 
-        _file = open(f'{self.general_config['tempDir']}{_data['task_id']}_hash.txt', 'w')
+        _file = open(f"{self.general_config['tempDir']}{_data['task_id']}_hash.txt", 'w')
         _file.write(_data['hash'])
         _file.close()
 
-        _data['hash_file'] = f'{_data['task_id']}_hash.txt'
-        _data['output_file'] = f'{_data['task_id']}_output.txt'
+        _data['hash_file'] = f"{_data['task_id']}_hash.txt"
+        _data['output_file'] = f"{_data['task_id']}_output.txt"
 
         return _data, True
 
     def return_task(self, subtask_id):
-        _file = open(f'{self.general_config['tempDir']}{subtask_id[:36]}_output.txt', 'r')
+        _file = open(f"{self.general_config['tempDir']}{subtask_id[:36]}_output.txt", 'r')
         _hash = _file.read()
         _file.close()
         
