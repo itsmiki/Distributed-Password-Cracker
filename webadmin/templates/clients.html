@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Create Attack{% endblock %} {% block content
+%}
+<div class="container my-5">
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded-3 border shadow-lg">
+
+        <h3 align="center" class="display-4 font-weight-bold">Connected Clients</h3>
+        <br>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Client ID</th>
+                    <th scope="col">IP Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for client in clients_list %}
+                <tr>
+                    <th scope="row">{{ client["name"] }}</th>
+                    <td>{{ client["client_id"] }}</td>
+                    <td>{{ client["client_ip"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+    </div>
+</div>
+
+
+
+
+{% endblock %}

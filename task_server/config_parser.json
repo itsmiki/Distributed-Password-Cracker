@@ -1,0 +1,39 @@
+{
+    "MD5": { 
+        "?l": {
+            "max_cut": 1,
+            "min_cut_length": 8 
+        },
+        "?l?u": {
+            "max_cut": 1,
+            "min_cut_length": 7 
+        },
+        "?l?u?d": {
+            "max_cut": 1,
+            "min_cut_length": 7 
+        },
+        "?l?u?d?s": {
+            "max_cut": 1,
+            "min_cut_length": 6 
+        }
+    },
+    "SHA1": { 
+        "?l": {
+            "max_cut": 1,
+            "min_cut_length": 8 
+        },
+        "?l?u": {
+            "max_cut": 1,
+            "min_cut_length": 7 
+        },
+        "?l?u?d": {
+            "max_cut": 1,
+            "min_cut_length": 7 
+        },
+        "?l?u?d?s": {
+            "max_cut": 1,
+            "min_cut_length": 6 
+        }
+    }
+
+}

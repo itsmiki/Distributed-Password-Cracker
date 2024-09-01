@@ -1,0 +1,4 @@
+accessify==0.3.1
+Flask==3.0.3
+flask_sqlalchemy==3.1.1
+uuid7==0.1.0

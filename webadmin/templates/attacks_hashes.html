@@ -1,0 +1,73 @@
+{% extends "base.html" %} {% block title %}Create Attack{% endblock %} {% block content
+%}
+<div class="container my-5">
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded border shadow-lg">
+        <h3 align="center" class="display-4 font-weight-bold">Attacks</h3>
+        <br>
+        <table class="table table-bordered align-middle">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Hash</th>
+                    <th scope="col">Attack Type</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Time Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for attack in attacks_list %}
+                <tr>
+                    <th>{{ attack["hash"] }}</th>
+                    <td>{{ attack["attack_type"] }}</td>
+                    <td>{{ attack["password"] }}</td> <!-- {{ attack["attack_ip"] }} -->
+                    <td>{{ '%0.2f' % (attack["time_finished"] | float - attack["time_started"] | float) }} s</td>
+                </tr>
+                <tr class="align-middle">
+                    <td colspan="3" class="align-middle">
+                        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated"
+                                style="width: {{ (attack['subtasks_done'] | int / attack['number_of_subtasks'] | int) * 100 }}%">
+                                {{ '%0.1f' % ((attack["subtasks_done"] | int / attack["number_of_subtasks"] | int) * 100) }}%</div>
+                        </div>
+                    </td>
+                    <td>
+                        <form name='remove_attack' method='POST'>
+                            <div class="form-group" hidden>
+                                <input class="form-control" id="task_id" name="task_id" value="{{ attack['task_id'] }}" />
+                            </div>
+                            <button type="submit" class="btn btn-danger btn-sm col-12">Remove</button>
+                        </form> 
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded border shadow-lg">
+        <h3 align="center" class="display-4 font-weight-bold">Hashes Found</h3>
+        <br>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Hash</th>
+                    <th scope="col">Hash Type</th>
+                    <th scope="col">Plaintext</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hash in hashes_list %}
+                <tr>
+                    <th>{{ hash["hash"] }}</th>
+                    <td>{{ hash["hash_type"] }}</td>
+                    <td>{{ hash["plaintext"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

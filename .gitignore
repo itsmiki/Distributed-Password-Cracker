@@ -1,0 +1,9 @@
+task_server/venv
+task_server/instance/task_server_database.db
+task_server/__pycache__
+
+client/venv
+client/__pycache__
+client/temp/*
+
+webadmin/__pycache__

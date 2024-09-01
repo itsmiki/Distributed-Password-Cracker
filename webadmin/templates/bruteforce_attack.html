@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block title %}Create Attack{% endblock %} {% block content
+%}
+<div class="container my-5">
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded border shadow-lg">
+        <form method="POST" id="bruteforce-form">
+            <h2 align="center" class="display-4 font-weight-bold lh-2">Create Bruteforce Attack</h2>
+            <div class="form-group">
+                <label for="hash">Hash to Crack</label>
+                <input class="form-control" id="hash" name="hash" placeholder="Enter hash" />
+            </div>
+            <div class="form-group" hidden>
+                <label for="attack_type">Hash to Crack</label>
+                <input class="form-control" id="attack_type" name="attack_type" value="bruteforce" />
+            </div>
+
+            <div class="form-group">
+                <label for="hash_type">Hash Type</label>
+                <select class="form-control" name="hash_type" id="hash_type">
+                    <option value="" selected disabled>Choose hash type</option>
+                    <option value="0">MD5</option>
+                    <option value="1">SHA1</option>
+                    <option value="1400">SHA2-256</option>
+                    <option value="1700">SHA2-512</option>
+                    <option value="17400">SHA3-256</option>
+                    <option value="17600">SHA3-512</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="password_length">Password length</label>
+                <select class="form-control" id="password_length" name="password_length">
+                    <option value="" selected disabled>Choose password length</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    <option>12</option>
+                    <option>13</option>
+                    <option>14</option>
+                    <option>15</option>
+                    <option>16</option>
+                </select>
+                <br>
+                <label for="charset">Charset</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="l" id="lowercase" name="lowercase">
+                    <label class="form-check-label" for="lowercase">
+                        Lowercase letters
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="u" id="uppercase" name="uppercase">
+                    <label class="form-check-label" for="uppercase">
+                        Uppercase letters
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="d" id="digits" name="digits">
+                    <label class="form-check-label" for="digits">
+                        Digits
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="s" id="special" , name="special">
+                    <label class="form-check-label" for="special">
+                        Special characters
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Run Attack</button>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

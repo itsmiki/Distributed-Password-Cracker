@@ -1,0 +1,41 @@
+{% extends "base.html" %} {% block title %}Create Attack{% endblock %} {% block content
+%}
+<div class="container my-5">
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded border shadow-lg">
+        <form method="POST" id="bruteforce-form">
+            <h2 align="center" class="display-4 font-weight-bold lh-2">Identify Hash</h2>
+            <div class="form-group">
+                <label for="hash">Hash to Identify</label>
+                <input class="form-control" id="hash" name="hash" placeholder="Enter hash" />
+            </div>
+            <center>
+                <button type="submit" class="btn btn-primary">Identify Hash</button>
+            </center>
+        </form>
+    </div>
+</div>
+
+<div class="container my-5" {{ visibility }}>
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded border shadow-lg">
+        <table class="table">
+            <h2 align="center" class="display-4 font-weight-bold lh-2">Possible Hash Types</h2>
+            <br>
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Hash Type</th>
+                    <th scope="col">Hashcat Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for hash in hash_list %}
+                <tr>
+                    <th scope="row">{{ hash["hash_type"] }}</th>
+                    <td>{{ hash["hashcat_mode"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
