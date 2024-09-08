@@ -11,7 +11,7 @@ def create_app():
     # db.init_app(app)
 
     general_config = GeneralConfig("config.ini")
-    general_config.set_task_server_ip("192.168.100.98")
+    general_config.set_task_server_ip("127.0.0.1")
     general_config.set_task_server_port("7000")
 
     from routers.dashboard import dashboard

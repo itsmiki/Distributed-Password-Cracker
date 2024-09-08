@@ -1,6 +1,6 @@
 {
     "MD5": { 
-        "min_task_number": 3,
+        "min_task_number": 4,
         "max_mask_number": 10000
     },
     "SHA1": { 
