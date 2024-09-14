@@ -4,10 +4,14 @@ from clients import ClientInstance
 from hashcat import HashcatInterface
 from time import sleep
 from sys import platform
-
+from utlis import print_dict, move_terminal
+import colorama
+from colorama import Fore, Back, Style
 
 
 def run_client():
+    colorama.init(autoreset=True)
+
     _workstation_name = input("Set name for this workstation: ")
     _server_ip = input("Provide server IP: ")
     _server_port = input("Provide server port: ")
@@ -47,10 +51,18 @@ def run_client():
         general_config.set_masks_dir("hashcat\\rules\\")
 
     _client_instance = ClientInstance(GeneralConfig("config.ini").get_config())
-    _client_id = _client_instance.connect_to_server()
+    
+    try:
+        _client_id = _client_instance.connect_to_server()
+        print(Fore.GREEN + Style.BRIGHT + "Connected to server!")
+    except:
+        print(Fore.RED + Style.BRIGHT + "Server unavailable, please check if the IP address provided was correct.")
+
+
     _hashcat_interface = HashcatInterface(HashcatConfig("config.ini").get_config(), GeneralConfig("config.ini").get_config())
 
-    print(_client_id)
+    print(Fore.BLUE + Style.BRIGHT + "Client ID: " + _client_id)
+    sleep(2)
     while(1):
         _task_data, _is_data = _client_instance.get_task(_client_id)
 
@@ -59,8 +71,13 @@ def run_client():
             sleep(5)
             continue
         
-        print("Got task!")
-        print(_task_data)
+        move_terminal(os.get_terminal_size().lines)
+        print(Fore.BLUE + Style.BRIGHT + f"You are cracking on {_workstation_name} with id {_client_id}.")
+        print(Fore.GREEN + Style.BRIGHT + "Task recieved!")
+        print("\033[1m" + "++++===============================TASK DATA===============================++++  " + "\033[0m")
+        print_dict(_task_data)
+        print("\033[1m" + "++++=======================================================================++++\n" + "\033[0m")
+        print(Fore.GREEN + Style.BRIGHT + "Cracking started.")
 
         if _task_data['attack_type'] == 'bruteforce':
             _hashcat_interface.bruteforce_attack(
@@ -95,7 +112,7 @@ if __name__ == "__main__":
     try:
         run_client()
     except KeyboardInterrupt:
-        print("Disconnected from server!")
+        print(Fore.RED + Style.BRIGHT + "Disconnected from server!")
         _config = GeneralConfig("config.ini").get_config()
         _client_instance = ClientInstance(_config)
         _client_instance.disconnect_from_server(_config['clientId'])

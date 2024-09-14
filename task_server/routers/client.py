@@ -3,6 +3,7 @@ from flask import (
     request, 
     )
 from parser import ClientParser
+# from utils import print_dict
 
 client = Blueprint('client', __name__, url_prefix='/api/v1/client')
 
@@ -31,10 +32,13 @@ def get_task(client_id):
 @client.route('/return-task', methods=['POST'])
 def return_task():
     _data = request.get_json()
-    print(_data)
+    
+    print("Task returned:")
+    # print_dict(_data)
+    print("\n")
+
     _clientparser = ClientParser()
     _clientparser.parse_returned_task(_data['subtask'], _data['hashplaintext'])
-    print(_data)
 
     return "Ok", 200
 

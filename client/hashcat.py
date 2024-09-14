@@ -5,6 +5,7 @@ import re
 from accessify import private
 import typing as t
 from utlis import HashType
+from colorama import Fore, Style
     
 
 class HashcatInterface():
@@ -51,9 +52,11 @@ class HashcatInterface():
     def run_command(self, command) -> t.Optional[str]:
         try:
             output = subprocess.check_output(command, shell=True, cwd = self.config['binaryDir'])
+            print(Fore.GREEN + Style.BRIGHT + "Hash was found!")
             return output.decode('utf-8')
         except subprocess.CalledProcessError as e:
-            print(f"Error executing hashcat command: {e}")
+            # print(f"Error executing hashcat command: {e}")
+            print(Fore.YELLOW + Style.BRIGHT +"Hash not found during this task...")
 
     @private
     def check_if_found_before(self, command) -> t.Optional[str]:

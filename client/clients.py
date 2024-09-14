@@ -35,7 +35,6 @@ class ClientInstance():
             _all_masks = _file_masks_input.readlines()
 
             for line in range(_data["config"]['start'], _data["config"]['end']):
-                print(line)
                 _file_masks_output.write(_all_masks[line])
             
             _file_masks_output.close()
@@ -67,6 +66,8 @@ class ClientInstance():
         res = requests.post(f"http://{self.general_config['taskServerIp']}:{self.general_config['taskServerPort']}/api/v1/client/return-task", json=_data)
 
         return None
+
+
 
 
 if __name__ == "__main__":

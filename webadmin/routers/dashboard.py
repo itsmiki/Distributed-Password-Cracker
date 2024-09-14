@@ -113,7 +113,6 @@ def get_attacks():
         
     res_attacks = requests.get(f'http://{_config.get_config()['taskServerIp']}:{_config.get_config()['taskServerPort']}{api_prefix}/tasks')
     res_hashes = requests.get(f'http://{_config.get_config()['taskServerIp']}:{_config.get_config()['taskServerPort']}{api_prefix}/hashes')
-    print(res_attacks.json())
     return render_template("attacks_hashes.html", attacks_list = res_attacks.json(), hashes_list = res_hashes.json())
 
 

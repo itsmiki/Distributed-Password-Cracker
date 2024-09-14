@@ -33,3 +33,13 @@ class ConfigClass(ABC):
     @abstractmethod
     def create_section(self):
         pass
+
+def print_dict(task: dict) -> None:
+    for key in task:
+        print(f"{key}: {task[key]}")
+
+def move_terminal(lines: int) -> None:
+    for _line in range (0, lines):
+        print("\n")
+
+    print("\033[%dA" % (lines))
