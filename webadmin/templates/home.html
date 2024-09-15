@@ -1,6 +1,41 @@
 {% extends "base.html" %} {% block title %}Distributed Password Cracker Dashboard{% endblock %} {% block content
-    %}
-    <br>
-    <h1 align="center" class="display-4 fw-bold lh-1">Distributed Password Cracker Dashboard</h1>
-    </form>
-    {% endblock %}
+%}
+<br>
+<div class="container my-5">
+    <div class="p-5 pb-0 pe-lg-0 pt-lg-5 rounded border shadow-lg">
+        <h2 class="display-4 font-weight-bold lh-2 text-center">Distributed Password Cracker Dashboard</h2>
+        <br>
+        <p class="lead">
+            This dashboard provides an interface for managing distributed password-cracking operations powered by
+            Hashcat. The tool allows users to launch various types of attacks across multiple connected clients,
+            harnessing their combined processing power for faster results.
+        </p>
+        <h5>
+            <b>Functionalities:</b>
+        </h5>
+
+        <ul class="lead">
+            <li><b>Bruteforce Attack:</b> Perform a comprehensive, systematic attempt to crack a password
+                by
+                trying all possible combinations of characters until the correct one is found.
+            </li>
+            <li><b>Dictionary Attack:</b> Leverage a predefined list of potential passwords (dictionary
+                file)
+                to guess the correct password quickly if it exists within the list.
+            </li>
+            <li><b>Dictionary Attack with Mask:</b> Combine the power of dictionary attacks with specific
+                custom patterns (masks) to optimize the cracking process by limiting the range of guesses, thus
+                improving efficiency.
+            </li>
+            <li><b>Identify Hash:</b> Automatically detect and identify the type of hash (e.g., MD5, SHA-256, Whirlpool)
+                from the provided input. This is a crucial first step in selecting the appropriate attack strategy and
+                optimizing performance.
+            </li>
+        </ul>
+        <p class="lead">
+            This platform enables the easy distribution and coordination of these attacks across multiple clients,
+            making the process more efficient and scalable.
+        </p>
+    </div>
+</div>
+{% endblock %}

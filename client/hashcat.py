@@ -31,7 +31,7 @@ class HashcatInterface():
         return self.run_command(hashcat_command) # output_file
     
     def bruteforce_attack(self, hash_type: HashType, hash_file: str, output_file: str, charset: list, pattern: str) -> str:
-        hashcat_command = f"{self.general_config['runCommandPrefix']}{self.config['binaryName']} -m {hash_type} -a 3 {self.config['tempDir']}{hash_file} -1 {charset[0]} -2 {charset[1]} {pattern} -o {self.config['tempDir']}{output_file}"
+        hashcat_command = f"{self.general_config['runCommandPrefix']}{self.config['binaryName']} -m {hash_type} -a 3 {self.config['tempDir']}{hash_file} -1 '{charset[0]}' -2 '{charset[1]}' '{pattern}' -o {self.config['tempDir']}{output_file}"
         
         hash_cracked = self.check_if_found_before(hashcat_command)
         if  hash_cracked is not None:

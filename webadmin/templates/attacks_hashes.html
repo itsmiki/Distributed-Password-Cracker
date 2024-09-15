@@ -20,16 +20,29 @@
                     <th>{{ attack["hash"] }}</th>
                     <td>{{ attack["attack_type"] }}</td>
                     <td>{{ attack["password"] }}</td> <!-- {{ attack["attack_ip"] }} -->
+                    {% if (attack["time_finished"] | float - attack["time_started"] | float) > 0 %}
                     <td>{{ '%0.2f' % (attack["time_finished"] | float - attack["time_started"] | float) }} s</td>
+                    {% else %}
+                    <td>Running...</td>
+                    {% endif %}
                 </tr>
                 <tr class="align-middle">
                     <td colspan="3" class="align-middle">
+                        {% if ((attack["subtasks_done"] | int / attack["number_of_subtasks"] | int) * 100) < 100 and attack["password"] == "NOT FOUND" %}
                         <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
                             aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar progress-bar-striped progress-bar-animated"
                                 style="width: {{ (attack['subtasks_done'] | int / attack['number_of_subtasks'] | int) * 100 }}%">
                                 {{ '%0.1f' % ((attack["subtasks_done"] | int / attack["number_of_subtasks"] | int) * 100) }}%</div>
                         </div>
+                        {% else %}
+                        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="0"
+                            aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                style="width: {{ (attack['subtasks_done'] | int / attack['number_of_subtasks'] | int) * 100 }}%">
+                                {{ '%0.1f' % ((attack["subtasks_done"] | int / attack["number_of_subtasks"] | int) * 100) }}%</div>
+                        </div>
+                        {% endif %}
                     </td>
                     <td>
                         <form name='remove_attack' method='POST'>

@@ -60,14 +60,14 @@ class TaskParser():
                 charset_2[i % parsing_rules[HashType(int(task_data['hash_type'])).name][task_data['charset']][task_data['length']]] = character
             i += 1
 
-        print(charset_2)
+        # print(charset_2)
         if parsing_rules[HashType(int(task_data['hash_type'])).name][task_data['charset']][task_data['length']] == 1:
             _pattern = f"{'?1' * int(task_data['length'])} --increment"
             _number_of_tasks = 1
             _new_task = SubTasks(
                 subtask_id = parent_id + "0",
                 parent_id = parent_id,
-                config = json.dumps({"charset": task_data['charset'], "pattern": _pattern, "hash_type": hash_type}),
+                config = json.dumps({"charset": [task_data['charset'], task_data['charset']], "pattern": _pattern, "hash_type": hash_type}),
                 client_id = None
                 )
             db.session.add(_new_task)

@@ -779,9 +779,9 @@ def writeResult(identified_modes, outfile, hashcatMode=False, johnFormat=False, 
             if johnFormat and mode.john is not None:
                 hashTypes += "[JtR Format: {0}]".format(mode.john)
             # hashTypes += "\n"
-            print(hashTypes)
+            # print(hashTypes)
             hashList.append(hashTypes.copy())
-            print(hashList)
+            # print(hashList)
     if count == 0:
         return False
     return hashList
@@ -857,14 +857,13 @@ def writeResult(identified_modes, outfile, hashcatMode=False, johnFormat=False, 
 #                 outfile.write(u"Analyzing '{0}'\n".format(string.strip()))
 #                 writeResult(hashID.identifyHash(string), outfile, args.mode, args.john, args.extended)
 
-def identify_hash(hash: str, hashcatMode: bool = False) -> list:
+def hashid_identify_hash(hash: str, hashcatMode: bool = False) -> list:
     hashid = HashIdentifier()
     return writeResult(hashid.identifyHash(hash), "test", hashcatMode, False, False)
 
 
 if __name__ == "__main__":
-    hashid = HashIdentifier()
-    print(writeResult(hashid.identifyHash("a94a8fe5ccb19ba61c4c0873d391e987982fbbd3"), "test", True, False, False))
+    print(hashid_identify_hash("21232f297a57a5a743894a0e4a801fc3", True))
 
     # try:
     #     main()
